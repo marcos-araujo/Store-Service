@@ -4,7 +4,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.store.client.ProviderClient;
 import com.store.client.TransporterClient;
 import com.store.controller.dto.*;
-import com.store.model.CompraStatus;
+import com.store.model.PurchaseStatus;
 import com.store.model.Purchase;
 import com.store.repository.PurchaseRepository;
 
@@ -38,7 +38,7 @@ public class PurchaseService {
     public Purchase doPurchase(PurchaseDTO purchaseDTO) {
 
         Purchase purchaseDB = new Purchase();
-        purchaseDB.setState(CompraStatus.RECEIVED);
+        purchaseDB.setState(PurchaseStatus.RECEIVED);
         purchaseDB.setDestinationAddress(purchaseDTO.getAddress().toString());
         purchaseRepository.save(purchaseDB);
         purchaseDTO.setPurchaseId(purchaseDB.getId());
@@ -49,7 +49,7 @@ public class PurchaseService {
         LOG.info("Making an purchase");
         InfoPurchaseDTO purchase = providerClient.doPurchase(purchaseDTO.getItems());
 
-        purchaseDB.setState(CompraStatus.ORDER_PLACED);
+        purchaseDB.setState(PurchaseStatus.ORDER_PLACED);
         purchaseDB.setOrderId(purchase.getId());
         purchaseDB.setPreparationTime(purchase.getPreparationTime());
 
@@ -62,7 +62,7 @@ public class PurchaseService {
         deliveryDTO.setDestinationAddress(purchaseDTO.getAddress().toString());
         VoucherDTO voucher = transporterClient.book(deliveryDTO);
 
-        purchaseDB.setState(CompraStatus.DELIVERY_RESERVATION_MADE);
+        purchaseDB.setState(PurchaseStatus.DELIVERY_RESERVATION_MADE);
         purchaseDB.setVoucher(voucher.getNumber());
         purchaseRepository.save(purchaseDB);
 

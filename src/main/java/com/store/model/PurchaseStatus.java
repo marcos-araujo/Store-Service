@@ -1,6 +1,6 @@
 package com.store.model;
 
-public enum CompraStatus {
+public enum PurchaseStatus {
 
     RECEIVED,
 

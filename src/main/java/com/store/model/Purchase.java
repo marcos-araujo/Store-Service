@@ -18,7 +18,7 @@ public class Purchase {
     private Long voucher;
 
     @Enumerated(EnumType.STRING)
-    private CompraStatus state;
+    private PurchaseStatus state;
 
 
     public Long getId() {
@@ -61,11 +61,11 @@ public class Purchase {
         this.voucher = voucher;
     }
 
-    public CompraStatus getState() {
+    public PurchaseStatus getState() {
         return state;
     }
 
-    public void setState(CompraStatus state) {
+    public void setState(PurchaseStatus state) {
         this.state = state;
     }
 
