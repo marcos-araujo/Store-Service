@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.store.controller.dto.InfoDeliveryDTO;
 import com.store.controller.dto.VoucherDTO;
 
-@FeignClient("transporter")
+@FeignClient("shipping")
 public interface TransporterClient {
 
     @PostMapping(path="/delivery")

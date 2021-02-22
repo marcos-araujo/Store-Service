@@ -17,7 +17,7 @@ public interface ProviderClient {
 	@RequestMapping("/info/{state}")
  	public InfoProviderDTO getInfoByState(@PathVariable String state);
 
-	@RequestMapping(method = RequestMethod.POST, value = "/purchase")
+	@RequestMapping(method = RequestMethod.POST, value = "/order")
 	public InfoPurchaseDTO doPurchase(List<PurchaseItemDTO> items);
 
 }

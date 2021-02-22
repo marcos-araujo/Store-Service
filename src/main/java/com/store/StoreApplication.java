@@ -28,7 +28,7 @@ public class StoreApplication {
 				Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 				if (authentication == null)
 					return;
-				OAuth2AuthenticationDetails detail = (OAuth2AuthenticationDetails) authentication.getCredentials();
+				OAuth2AuthenticationDetails detail = (OAuth2AuthenticationDetails) authentication.getDetails();
 				requestTemplate.header("Authorization", "Bearer " + detail.getTokenValue());
 				detail.getTokenValue();
 			}
